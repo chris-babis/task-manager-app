@@ -1,0 +1,11 @@
+
+<div class="user-page">
+    <img src="../../assets/login-bg.jpg" class="background-image">
+    <form class="form">
+        <h1 class="form__header">{{ headerText }}</h1>
+        <input type="text" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button type="submit">{{ headerText }}</button>
+        <a class="redirect" [routerLink]="redirectLink">or {{ redirectText }}</a>
+    </form>
+</div> 
