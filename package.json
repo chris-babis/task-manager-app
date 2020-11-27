@@ -2,6 +2,7 @@
   "name": "task-manager-app",
   "version": "0.0.0",
   "scripts": {
+    "dev": "nodemon ./backend/app.js",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -19,8 +20,11 @@
     "@angular/platform-browser": "~11.0.1",
     "@angular/platform-browser-dynamic": "~11.0.1",
     "@angular/router": "~11.0.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.16",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "validator": "^13.1.17",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

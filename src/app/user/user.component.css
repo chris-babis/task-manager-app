@@ -53,6 +53,7 @@
     background-color: #fff;
     border:1px solid #000;
     outline: none;
+    color: #000;
 
     transition: background-color .5s, color .5s;
 }
@@ -62,7 +63,14 @@
     color: #fff;
 }
 
-.redirect {
+.form > button:disabled, .form > button:disabled {
+    border: 1px solid #ccc;
+    background: transparent;
+    color: #ccc;
+    cursor: default;
+}
+
+.redirect,.redirect:active,.redirect:visited {
     font-size: 1.2rem;
     font-weight: 100;
     margin-top: 3rem;
@@ -74,4 +82,11 @@
 
 .redirect:hover {
     transform: scale(1.4);
+}
+
+.error {
+    margin-top: 2rem;
+    color: rgb(255, 0, 0);
+    font-size: 1.6rem;
+    font-weight: 800;
 }

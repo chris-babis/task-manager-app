@@ -1,11 +1,15 @@
 
 <div class="user-page">
     <img src="../../assets/login-bg.jpg" class="background-image">
-    <form class="form">
+    <form class="form" #f="ngForm" (ngSubmit)="handleUser(email,password)">
         <h1 class="form__header">{{ headerText }}</h1>
-        <input type="text" placeholder="Email">
-        <input type="password" placeholder="Password">
-        <button type="submit">{{ headerText }}</button>
+        <input type="text" placeholder="Email" #email required ngModel name="email">
+        <input type="password" placeholder="Password" #password required ngModel name="password">
+        <input type="password" placeholder="Re-Enter your password..." *ngIf="headerText === 'register'" ngModel name="repassword" #repassword required>
+
+        <button type="submit" [disabled]="!f.valid">{{ headerText }}</button>
+        <p class="error" *ngIf="err">{{err}}</p>
         <a class="redirect" [routerLink]="redirectLink">or {{ redirectText }}</a>
     </form>
 </div> 
+ 
