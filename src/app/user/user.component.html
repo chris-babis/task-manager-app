@@ -3,10 +3,15 @@
     <img src="../../assets/login-bg.jpg" class="background-image">
     <form class="form" #f="ngForm" (ngSubmit)="handleUser(email,password)">
         <h1 class="form__header">{{ headerText }}</h1>
-        <input type="text" placeholder="Email" #email required ngModel name="email">
-        <input type="password" placeholder="Password" #password required ngModel name="password">
-        <input type="password" placeholder="Re-Enter your password..." *ngIf="headerText === 'register'" ngModel name="repassword" #repassword required>
-
+        <input type="text" placeholder="Email" #email="ngModel" required ngModel name="email">
+        <p class="invalid" *ngIf="email.errors?.required && email.touched && email.dirty">Email is required</p>
+        <input type="password" placeholder="Password" #password="ngModel" required ngModel name="password">
+        <p class="invalid" *ngIf="password.errors?.required && password.touched && password.dirty">Password is required</p>
+        <div class="re-enter__pass-template" *ngIf="headerText === 'register'" >
+            <input type="password" placeholder="Re-Enter your password..." ngModel name="repassword" #repassword="ngModel" required>
+            <p class="invalid" *ngIf="repassword.errors?.required && repassword.touched && password.dirty && password.valid">Re-enter your password</p>
+            <p class="invalid" *ngIf="repassword.touched && password.touched && repassword.dirty && password.dirty && password.valid && password.value !== repassword.value">Passwords don't match</p>
+        </div>
         <button type="submit" [disabled]="!f.valid">{{ headerText }}</button>
         <p class="error" *ngIf="err">{{err}}</p>
         <a class="redirect" [routerLink]="redirectLink">or {{ redirectText }}</a>

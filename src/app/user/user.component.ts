@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from './user.service';
@@ -8,7 +8,7 @@ import { UserService } from './user.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
 
   headerText;
   redirectText;
@@ -36,8 +36,12 @@ export class UserComponent implements OnInit {
   handleUser(email,password) {
     if(this.headerText === `register`) this.userService.registerUser(email.value,password.value);
     else {
-      
+      this.userService.loginUser(email.value,password.value);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.errSub.unsubscribe();
   }
 
 }
