@@ -1,0 +1,19 @@
+<div class="user-page">
+    <img src="../../assets/login-bg.jpg" class="background-image">
+    <form class="form" #f="ngForm" (ngSubmit)="registerUser(email,password,username)">
+        <h1 class="form__header"> Register </h1>
+        <input type="text" placeholder="Email" #email="ngModel" required ngModel name="email">
+        <p class="invalid" *ngIf="email.errors?.required && email.touched && email.dirty">Email is required</p>
+        <input type="text" id="username" placeholder="Username" #username="ngModel" required ngModel name="username">
+        <p class="invalid" *ngIf="username.errors?.required && username.touched && username.dirty">Username is required</p>
+        <input type="password" placeholder="Password" #password="ngModel" required ngModel name="password">
+        <p class="invalid" *ngIf="password.errors?.required && password.touched && password.dirty">Password is required</p>
+        <input type="password" placeholder="Re-Enter your password..." ngModel name="repassword" #repassword="ngModel" required>
+        <p class="invalid" *ngIf="repassword.errors?.required && repassword.touched && password.dirty && password.valid">Re-enter your password</p>
+        <p class="invalid" *ngIf="repassword.touched && password.touched && repassword.dirty && password.dirty && password.valid && password.value !== repassword.value">Passwords don't match</p>
+        <button type="submit" [disabled]="!f.valid">Register</button>
+        <p class="error" *ngIf="err">{{err}}</p>
+        <a class="redirect" routerLink="/login">or login</a>
+    </form>
+</div> 
+  

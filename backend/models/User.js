@@ -12,7 +12,13 @@ const userSchema = mongoose.Schema({
         lowercase: true,
         validate(emailValue){ if(!validator.isEmail(emailValue)) throw new Error("Email is invalid") }
     },
-
+    username: {
+        type: String,
+        unique: true,
+        required: true,
+        trim: true,
+        lowercase: true
+    },
     password: {
         type: String,
         required: true,
@@ -27,6 +33,13 @@ const userSchema = mongoose.Schema({
     }] 
 });
 
+
+// Virtual 
+userSchema.virtual('project', {
+    ref: 'Project',
+    localField: '_id',
+    foreignField: 'ownerId'
+});
 
 // Hide values (password..)
 userSchema.methods.toJSON = function() {

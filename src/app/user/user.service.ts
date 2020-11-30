@@ -10,17 +10,17 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-  private user = new BehaviorSubject<User>(null);
+  user = new BehaviorSubject<User>(null);
 
   constructor(private http:HttpClient, private router:Router) { }
 
   errorMessage = new Subject<string>();
 
-  registerUser(email,password) {
-    this.http.post(`http://localhost:3000/users`, {email,password})
+  registerUser(email,password,username) {
+    this.http.post(`http://localhost:3000/users`, {email,password,username})
     .pipe(tap(userData => this.handleAuth(userData)))
     .subscribe(
-      res => this.router.navigate(['/overview']),
+      res => this.router.navigate(['/user']),
       err => this.errorMessage.next(err.error.err)    
     )
   }
@@ -29,7 +29,7 @@ export class UserService {
     this.http.post(`http://localhost:3000/users/login`, {email,password})
     .pipe(tap(userData => this.handleAuth(userData)))
     .subscribe(
-      res => this.router.navigate(['/overview']),
+      res => this.router.navigate(['/user']),
       err => this.errorMessage.next(err.error)
       
     )

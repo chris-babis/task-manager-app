@@ -1,0 +1,109 @@
+
+.user-page {    
+    box-shadow: 0px 0px 2rem 1rem #A0A0A0;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+}
+
+.background-image {
+    width: 60%;
+    height: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 27rem;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.form__header {
+    font-size: 3.2rem;
+    font-weight: 400;
+    padding-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.form > input {
+    padding: .5rem 1rem;
+    width: 300px;
+    margin: 1rem;
+    font-size: 1.4rem;
+    font-weight: 300;
+    border-top: 0rem;
+    border-left: 0rem;
+    border-right: 0rem;
+    border-bottom: .1rem solid;
+    border-bottom-color:  rgba(112, 112, 112, 0.6);
+    outline: none;
+    
+    transition: border-bottom-color .5s;
+}
+
+.form > input:focus {
+    border-bottom-color: rgb(36, 36, 36);
+}
+
+.form > button {
+    width: 100%;
+    padding: 1rem 0rem;
+    font-size: 1.6rem;
+    margin-top: 2rem;
+    cursor: pointer;
+
+    background-color: #fff;
+    border:1px solid #000;
+    outline: none;
+    color: #000;
+
+    transition: background-color .5s, color .5s;
+}
+
+.form > button:hover {
+    background-color: rgb(56, 56, 56);
+    color: #fff;
+}
+
+.form > button:disabled, .form > button:disabled {
+    border: 1px solid #ccc;
+    background: transparent;
+    color: #ccc;
+    cursor: default;
+}
+
+.redirect,.redirect:active,.redirect:visited {
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin-top: 3rem;
+    text-transform: lowercase;
+    cursor: pointer;
+    color: #666;
+    transition: transform .3s;
+}
+
+.redirect:hover {
+    transform: scale(1.4);
+}
+
+.error {
+    margin-top: 2rem;
+    color: rgb(255, 0, 0);
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: 300;
+}
+
+.invalid {
+    color: rgb(255, 0, 0);
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: 300;
+}

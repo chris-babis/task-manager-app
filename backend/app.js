@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const User = require('./routers/User');
+const Project = require('./routers/Project');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,5 +23,6 @@ app.use((req,res,next) => {
 });
 
 app.use(User);
+app.use(Project);
 
 app.listen(PORT, console.log(`Server up running...\nPORT: ${PORT}`));

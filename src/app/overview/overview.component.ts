@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../shared/project.service';
 
 @Component({
   selector: 'app-overview',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private projectService:ProjectService) { }
 
   ngOnInit(): void {
+    this.projectService.getUsersProjects();
   }
 
 }
