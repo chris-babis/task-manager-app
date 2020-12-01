@@ -17,7 +17,15 @@
     <span class="underline"></span>
     <div class="projects">
         <p class="projects__header">Projects</p>
-        <p class="projects__no">You have no projects yet</p>
+        <div class="no__projects--wrapper" *ngIf="projects.length === 0">
+            <p class="no__projects--text" >You have no projects yet</p>
+            <a class="create-btn">
+                <i class="material-icons-outlined">add</i> Create
+            </a>
+        </div>
+        <div *ngIf="projects.length !== 0">
+            <a class="project-title" *ngFor="let project of projects">{{project.title}}</a>
+        </div>
     </div>
 </div>
 <div class="container">

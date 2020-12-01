@@ -35,17 +35,17 @@ export class UserService {
     )
   }
 
-  handleAuth(userData) {
-    const user = new User(userData.user._id,userData.token);
+  handleAuth(userData) {    
+    const user = new User(userData.user._id,userData.token, userData.user.username);    
     this.user.next(user);
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
   autoLogin(){
-    const userData: {_id: string; token: string} = JSON.parse(localStorage.getItem('userData'));
+    const userData: {_id: string; token: string; username: string} = JSON.parse(localStorage.getItem('userData'));
     if(!userData) return;
-
-    const loggedInUser = new User(userData._id,userData.token);
+    
+    const loggedInUser = new User(userData._id,userData.token, userData.username);
     if(loggedInUser.token) this.user.next(loggedInUser);
   }
 

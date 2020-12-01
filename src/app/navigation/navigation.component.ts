@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Project } from '../shared/project.model';
+import { ProjectService } from '../shared/project.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  projects: Project[] = [];
+  projectsSub: Subscription
+
+  constructor(private projectService:ProjectService) { }
 
   ngOnInit(): void {
+    this.projectService.getUsersProjects();
+    this.projectsSub = this.projectService.getProjects().subscribe((projects:Project[]) => this.projects = projects);
   }
 
 }
