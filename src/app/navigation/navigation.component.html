@@ -5,11 +5,11 @@
     </div>
     <span class="underline"></span>
     <div class="navigation-links">
-        <div class="navigation-link__wrapper">
+        <div class="navigation-link__wrapper" routerLink="/user" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">
             <i class="material-icons-outlined">home</i>
-            <a href="">Home</a>
+            <a >Home</a>
         </div>
-        <div class="navigation-link__wrapper">
+        <div class="navigation-link__wrapper" >
             <i class="material-icons-outlined">account_circle</i>
             <a href="">Your Tasks</a>
         </div>
@@ -19,7 +19,7 @@
         <p class="projects__header">Projects</p>
         <div class="no__projects--wrapper" *ngIf="projects.length === 0">
             <p class="no__projects--text" >You have no projects yet</p>
-            <a class="create-btn">
+            <a class="create-btn" routerLink="create">
                 <i class="material-icons-outlined">add</i> Create
             </a>
         </div>
@@ -27,6 +27,11 @@
             <a class="project-title" *ngFor="let project of projects">{{project.title}}</a>
         </div>
     </div>
+    <a class="logout-btn" (click)="logout()">
+        <i class="material-icons-outlined">exit_to_app</i>
+        Logout
+        
+    </a>
 </div>
 <div class="container">
     <router-outlet></router-outlet>

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const User = require('../models/User');
+const auth = require('../auth/auth');
 
 
 // Create User
@@ -34,5 +35,16 @@ router.post('/users/login', async(req,res) => {
         res.status(400).send(err);
     }
 }); 
+
+// Logout User
+router.post('/logout', auth, async(req,res) => {
+    try {
+        req.user.tokens = req.user.tokens.filter(token => token.token !== req.token);
+        await req.user.save();
+        res.status(200).send();
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
 
 module.exports = router;  

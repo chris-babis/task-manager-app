@@ -4,6 +4,6 @@ export interface Project {
     _id?: string,
     title: string,
     ownerId: string,
-    tasks: [Task],
-    collaborators: [string]
+    tasks?: [Task],
+    collaborators?: [string]
 }

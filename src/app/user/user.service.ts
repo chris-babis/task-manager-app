@@ -31,8 +31,16 @@ export class UserService {
     .subscribe(
       res => this.router.navigate(['/user']),
       err => this.errorMessage.next(err.error)
-      
     )
+  }
+
+  logoutUser(){
+    this.http.post(`http://localhost:3000/logout`, this.user.value
+    ).subscribe(res => {
+      this.user.next(null);
+      localStorage.removeItem('userData');
+      this.router.navigate(['/login']);
+    })
   }
 
   handleAuth(userData) {    
@@ -51,6 +59,10 @@ export class UserService {
 
   getErrorMessage() {
     return this.errorMessage.asObservable();
+  }
+
+  getUser(){
+    return this.user.asObservable();
   }
 
 

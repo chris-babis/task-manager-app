@@ -6,11 +6,7 @@ const auth = require('../auth/auth');
 
 // Create a Project
 router.post("/projects", auth, async(req,res) => {
-    const newProject = new Project({
-        title: req.body.title,
-        ownerId: req.user._id
-    });
-
+    const newProject = new Project(req.body.project);
     await newProject.save();
     res.send(newProject);
 });

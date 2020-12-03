@@ -8,21 +8,25 @@ const projectSchema = mongoose.Schema({
     },
     ownerId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
     collaborators: [{
         collaboratorId:{
             type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
             required: false
         }
     }],
     tasks: [{
         task: {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Task',
             required: false
         }
     }]
-});
+},
+{ timestamps: true });
 
 
 const Project = mongoose.model("Project", projectSchema);

@@ -35,6 +35,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    cursor: pointer;
+   
 }
 
 .navigation-link__wrapper {
@@ -43,6 +45,7 @@
     text-align: left;
     display: flex;
     align-items: center;
+    outline: none;
 }
 
 .navigation-link__wrapper .material-icons-outlined {
@@ -61,7 +64,7 @@
 }
 
 .navigation-link__wrapper:hover {
-    background-color: rgb(109, 109, 109);
+    background-color: rgb(192, 64, 124);
 }
 
 .underline {
@@ -103,6 +106,25 @@
 }
 
 
+.logout-btn {
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    border-radius: .5rem;
+    border: .2rem solid #ff9b8c;
+    padding: 1rem 0rem;
+    width: 80%;
+
+    transition: background-color .3s;
+}
+
+.logout-btn:hover {
+    background-color: #ff9b8c;
+}
+
 /* NO PROJECTS STYLE */
 .no__projects--wrapper {
     display: flex;
@@ -121,7 +143,7 @@
     border-radius: .5rem;
     border: .2rem solid rgb(190, 92, 138);
     padding: .5rem 2rem;
-
+    text-decoration: none;
     transition: background-color .3s;
 }
 
@@ -131,4 +153,14 @@
 
 .create-btn > .material-icons-outlined {
     padding-right: .5rem;
+}
+
+.logout-btn > .material-icons-outlined {
+    transform: rotate(180deg);
+    padding-left: 1rem;
+}
+
+
+.active {
+    background-color: rgb(190, 92, 138);
 }

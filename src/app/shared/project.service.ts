@@ -9,10 +9,8 @@ import { Project } from './project.model';
 })
 export class ProjectService implements OnInit{
 
-  headers = new HttpHeaders();
   projects: Project[] = [];
   projectsSub = new BehaviorSubject<Project[]>([]);
-
   
   constructor(private http:HttpClient, private userService:UserService) { }
 
@@ -21,8 +19,8 @@ export class ProjectService implements OnInit{
   }
 
   getUsersProjects() {      
-    this.headers = this.headers.set('Authorization', `Bearer ${this.userService.user.value.token}`);
-    this.http.get("http://localhost:3000/projects", {headers: this.headers}).subscribe((projects:Project[]) => {
+
+    this.http.get("http://localhost:3000/projects").subscribe((projects:Project[]) => {
       this.projects = projects;
       this.projectsSub.next([...this.projects]);
     })
@@ -30,5 +28,18 @@ export class ProjectService implements OnInit{
 
   getProjects(){
     return this.projectsSub.asObservable();
+  }
+
+  createProject(title) {
+    const project: Project = {
+      title,
+      ownerId: this.userService.user.value._id
+    }
+
+    this.http.post(`http://localhost:3000/projects`, {project}).subscribe((resProject:Project) => {
+      this.projects.push(resProject);
+      this.projectsSub.next([...this.projects]);
+    });
+
   }
 }

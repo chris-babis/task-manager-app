@@ -1,0 +1,11 @@
+<h1 class="create--heading">New Project</h1>
+<form class="new-project__form" #form="ngForm" (ngSubmit)="createProject(title.value)">
+
+    <div class="input__wrapper">
+        <input type="text" placeholder="Enter title..." class="project__title" required ngModel name="title" #title="ngModel"> <span></span>
+    </div>
+    <p class="invalid-input" *ngIf="title.errors?.required && title.dirty && title.touched">Title is required</p>
+    
+    <button class="create-btn" [disabled]="!form.valid">Create Project</button>
+
+</form>

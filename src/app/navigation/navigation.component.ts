@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Project } from '../shared/project.model';
 import { ProjectService } from '../shared/project.service';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -13,11 +14,15 @@ export class NavigationComponent implements OnInit {
   projects: Project[] = [];
   projectsSub: Subscription
 
-  constructor(private projectService:ProjectService) { }
+  constructor(private projectService:ProjectService, private userService:UserService) { }
 
   ngOnInit(): void {
     this.projectService.getUsersProjects();
     this.projectsSub = this.projectService.getProjects().subscribe((projects:Project[]) => this.projects = projects);
+  }
+
+  logout() {
+    this.userService.logoutUser();
   }
 
 }
