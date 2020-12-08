@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../user.service';
 
@@ -12,9 +13,10 @@ export class LoginComponent implements OnInit {
   err:string;
   errSub:Subscription;
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService, private router:Router) { }
 
   ngOnInit(): void {
+    if(this.userService.user) this.router.navigate(['/user']);
     this.errSub = this.userService.getErrorMessage().subscribe(err => this.err = err);
   }
 

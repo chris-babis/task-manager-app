@@ -10,6 +10,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptor } from './user/auth.interceptor';
 import { CreateComponent } from './create/create.component';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CreateComponent } from './create/create.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    CreateComponent
+    CreateComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,

@@ -17,4 +17,15 @@ router.get("/projects", auth, async(req,res) => {
     res.send(req.user.projects);
 });
 
+// Get Single Project
+router.get("/project/:id", auth, async(req,res) => {
+    try {
+        const project = await Project.findById(req.params.id);
+        if(!project) return res.status(404).send({message: 'Project not found.'});
+        res.status(200).send(project);
+    } catch (err) {
+        console.log(err); 
+    }
+});
+ 
 module.exports = router;  

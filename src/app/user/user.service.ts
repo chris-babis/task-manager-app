@@ -4,6 +4,7 @@ import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { User } from './user.model';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Project } from '../shared/project.model';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +44,7 @@ export class UserService {
     })
   }
 
-  handleAuth(userData) {    
+  handleAuth(userData) {
     const user = new User(userData.user._id,userData.token, userData.user.username);    
     this.user.next(user);
     localStorage.setItem('userData', JSON.stringify(user));
@@ -54,8 +55,12 @@ export class UserService {
     if(!userData) return;
     
     const loggedInUser = new User(userData._id,userData.token, userData.username);
-    if(loggedInUser.token) this.user.next(loggedInUser);
-  }
+    if(loggedInUser.token) {
+      this.user.next(loggedInUser);
+      this.http.get("http://localhost:3000/projects").subscribe((projects:Project[]) => this.user.value.projects = projects)     
+    }
+   }
+  
 
   getErrorMessage() {
     return this.errorMessage.asObservable();

@@ -9,9 +9,10 @@ router.post('/users', async(req,res) => {
 
     try {
         const user = new User({email: req.body.email,password:req.body.password, username: req.body.username});
+        await user.populate('projects').execPopulate();
         const token = await user.generateAuthToken();
         await user.save();
-        res.status(201).send({user, token});
+        res.status(201).send({user, token, projects: user.projects});
     } catch (err) {
         console.log(err);
         if(err.code === 11000) return res.status(409).send({err: "Email already registered."});
@@ -29,8 +30,9 @@ router.post('/users', async(req,res) => {
 router.post('/users/login', async(req,res) => {
     try {
         const user = await User.findUser(req.body.email,req.body.password);
+        await user.populate('projects').execPopulate();
         const token = await user.generateAuthToken();
-        res.status(201).send({user, token});
+        res.status(201).send({user, token, projects: user.projects});
     } catch (err) {
         res.status(400).send(err);
     }

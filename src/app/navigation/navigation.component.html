@@ -24,7 +24,7 @@
             </a>
         </div>
         <div *ngIf="projects.length !== 0">
-            <a class="project-title" *ngFor="let project of projects">{{project.title}}</a>
+            <a class="project-title" *ngFor="let projectEl of projects" routerLinkActive="activeProject"  [routerLinkActiveOptions]="{exact: true}" [routerLink]="['project', projectEl._id]">{{projectEl.title}}</a>
         </div>
     </div>
     <a class="logout-btn" (click)="logout()">

@@ -14,8 +14,5 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     this.userService.autoLogin();
-    if(this.userService.user !== null) {
-      this.router.navigate(['/user']);
-    }
   }
 }

@@ -40,6 +40,9 @@ export class ProjectService implements OnInit{
       this.projects.push(resProject);
       this.projectsSub.next([...this.projects]);
     });
+  }
 
+  getProject(_id:string) {
+    return this.http.get<Project>(`http://localhost:3000/project/${_id}`)
   }
 }
