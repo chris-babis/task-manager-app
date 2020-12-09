@@ -1,3 +1,23 @@
 <div class="project">
-    <p class="project-title">{{project.title}}</p>
+    <p class="project__title">{{project.title}}</p>
+    <div class="project__tasks">
+        <div class="project__tasks--list__header">
+            <p class="header-name">Name</p>
+            <p class="header-assignee">Assignee</p>
+            <p class="header-priority">Priority</p>
+        </div>
+        <hr>
+        <div class="project__tasks--add">
+            <input type="text" placeholder="Add Task...">
+            <select class="assignee">
+                <option>None</option>
+                <option *ngFor="let user of allUsers" [value]="user.username">{{user.username}}</option>
+            </select>
+            <select class="priority">
+                <option value="low">Low</option>
+                <option value="moderate">Moderate</option>
+                <option value="high">High</option>
+            </select>
+        </div>
+    </div>
 </div>

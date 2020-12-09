@@ -1,0 +1,77 @@
+.project__title {
+    font-size: 3.2rem;
+}
+
+.project__tasks {
+    margin-top: 2rem;
+}
+
+.project__tasks--list__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-name {
+    flex: 0 0 75%;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.header-assignee {
+    flex: 0 0 15%;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.header-priority {
+    flex: 0 0 10%;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.project__tasks > hr {
+    color: #666;
+    margin-top: 1rem;
+}
+
+.project__tasks--add {
+    display: flex;
+    align-items: center;
+    border-bottom: .1rem solid #666;
+}
+
+.project__tasks--add > input {
+    font-size: 1.4rem;
+    padding: 1rem 0rem;
+    border: 0;
+    border-right: .1rem solid #666;
+    flex: 0 0 75%;
+    outline: none;
+}
+
+.project__tasks--add > select.assignee {
+    font-size: 1.4rem;
+    padding: 1rem 0rem;
+    flex: 0 0 15%;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    border-right: .1rem solid #666;
+    cursor: pointer;
+}
+
+.project__tasks--add > select.priority {
+    font-size: 1.4rem;
+    padding: 1rem 0rem;
+    flex: 0 0 10%;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    border-right: .1rem solid #666;
+    cursor: pointer;
+}
+
+.project__tasks--add > select > option {
+    font-size: 1.2rem;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProjectService } from './shared/project.service';
 import { UserService } from './user/user.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UserService } from './user/user.service';
 export class AppComponent implements OnInit{
   title = 'task-manager-app';
 
-  constructor(private userService:UserService, private router:Router){}
+  constructor(private userService:UserService){}
 
   ngOnInit() {
     this.userService.autoLogin();

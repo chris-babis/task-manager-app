@@ -15,9 +15,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'user', component: NavigationComponent, canActivate:[AuthGuardService] ,children: [
-    {path: '', component: HomeComponent, pathMatch: 'full'},
+    {path: '', component: HomeComponent},
     {path: 'create', component: CreateComponent},
-    {path: 'project/:id', component: ProjectComponent, canActivate: [OwnerProject], resolve:[ProjectResolver]}
+    {path: 'project/:id', component: ProjectComponent,canActivate: [OwnerProject], resolve:[ProjectResolver]}
   ]}
 ];
 

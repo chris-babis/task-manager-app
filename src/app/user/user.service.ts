@@ -6,12 +6,14 @@ import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Project } from '../shared/project.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
   user = new BehaviorSubject<User>(null);
+  
 
   constructor(private http:HttpClient, private router:Router) { }
 
@@ -57,10 +59,8 @@ export class UserService {
     const loggedInUser = new User(userData._id,userData.token, userData.username);
     if(loggedInUser.token) {
       this.user.next(loggedInUser);
-      this.http.get("http://localhost:3000/projects").subscribe((projects:Project[]) => this.user.value.projects = projects)     
     }
-   }
-  
+  }
 
   getErrorMessage() {
     return this.errorMessage.asObservable();

@@ -5,7 +5,7 @@ export class User  {
     _id: string;
     token: string;
     username: string;
-    projects: Project[];
+    projects?: Project[];
 
     constructor(_id: string, token: string, username: string) {
         this._id = _id;
