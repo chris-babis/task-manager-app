@@ -1,23 +1,33 @@
 <div class="project">
     <p class="project__title">{{project.title}}</p>
     <div class="project__tasks">
-        <div class="project__tasks--list__header">
-            <p class="header-name">Name</p>
-            <p class="header-assignee">Assignee</p>
+       <div class="project__tasks--header">
+            <p class="header-name">Task name</p>
+            <p class="header-assigne">Assignee</p>
             <p class="header-priority">Priority</p>
-        </div>
-        <hr>
-        <div class="project__tasks--add">
-            <input type="text" placeholder="Add Task...">
-            <select class="assignee">
-                <option>None</option>
-                <option *ngFor="let user of allUsers" [value]="user.username">{{user.username}}</option>
+       </div>
+       <div class="project__tasks--list">
+           <div class="project__tasks--task" *ngFor="let task of project.tasks">
+               <button><i class="material-icons">delete</i></button>
+               <p class="task-name">{{task?.title}}</p>
+               <p class="task-assignee">{{task.assignee}}</p>
+               <p class="task-priority">{{task.priority}}</p>
+           </div>
+       </div>
+       <div class="project__tasks--add">
+            <input type="text" placeholder="Add Task..." [(ngModel)]="nameInput">
+            <select class="assignee" [(ngModel)]="selectedAssignee">
+                <option [value]="project.ownerId._id">{{project.ownerId.username}}</option>
+                <option *ngFor="let user of project.collaborators" [value]="user._id">{{user.username}}</option>
             </select>
-            <select class="priority">
-                <option value="low">Low</option>
-                <option value="moderate">Moderate</option>
-                <option value="high">High</option>
+            <select class="priority" [(ngModel)]="selectedPriority"> 
+                <option value="Low">Low</option>
+                <option value="Moderate">Moderate</option>
+                <option value="High">High</option>
             </select>
-        </div>
+       </div>
+       <button *ngIf="nameInput.length >= 1" (click)="addTask()" class="add-btn">Add</button>
     </div>
-</div>
+    <p class="no-collab--text" *ngIf="project.collaborators.length < 1">Collaborators: You have no collaborators for this project</p>
+</div> 
+

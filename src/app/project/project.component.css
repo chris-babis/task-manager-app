@@ -4,48 +4,105 @@
 
 .project__tasks {
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.project__tasks--list__header {
+.project {
+    max-width: 160rem;
+    margin:0 auto;
+}
+
+.project__tasks--header {
     display: flex;
-    justify-content: center;
+    border-bottom: .1rem solid #ccc;
     align-items: center;
 }
 
 .header-name {
     flex: 0 0 75%;
-    font-size: 1.2rem;
-    color: #666;
 }
 
-.header-assignee {
+.header-assigne {
     flex: 0 0 15%;
-    font-size: 1.2rem;
-    color: #666;
 }
 
 .header-priority {
     flex: 0 0 10%;
-    font-size: 1.2rem;
-    color: #666;
 }
 
-.project__tasks > hr {
+.header-name, .header-assigne, .header-priority {
     color: #666;
-    margin-top: 1rem;
+    font-size: 1.4rem;
+    padding: 1rem 0rem;
+}
+
+.project__tasks--list {
+    display: flex;
+    flex-direction: column;
+}
+
+.project__tasks--task {
+    display: flex;
+    border-bottom: .1rem solid rgb(209, 209, 209);
+    align-items: center;
+
+    position: relative;
+}
+
+.project__tasks--task > button {
+    position: absolute;
+    margin-left: -2.5rem;
+    border:0;
+    outline: 0;
+    cursor: pointer;
+    color: red;
+    transform: scale(.8);
+
+    transition: opacity .5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.project__tasks--task:hover button {
+    opacity: 1;
+    visibility: visible;
+}
+
+.task-name {flex: 0 0 75%;}
+.task-assignee{flex: 0 0 15%;}
+.task-priority{flex: 0 0 10%;}
+
+.task-name,.task-assignee,.task-priority {
+    font-size: 1.4rem;
+    color: #666;
+    padding: 1rem 1rem;
+    border-right: .1rem solid rgb(209, 209, 209);
+    height: 3.6rem;
 }
 
 .project__tasks--add {
     display: flex;
-    align-items: center;
-    border-bottom: .1rem solid #666;
+    border-bottom: .1rem solid rgb(209, 209, 209);
+}
+
+.project__tasks--add > input {
+    flex: 0 0 75%;
+}
+
+.project__tasks--add > .assignee {
+    flex: 0 0 15%;
+}
+
+.project__tasks--add > .priority {
+    flex: 0 0 10%;
 }
 
 .project__tasks--add > input {
     font-size: 1.4rem;
-    padding: 1rem 0rem;
+    padding: 1rem 1rem;
     border: 0;
-    border-right: .1rem solid #666;
+    border-right: .1rem solid rgb(209, 209, 209);
     flex: 0 0 75%;
     outline: none;
 }
@@ -57,7 +114,7 @@
     outline: none;
     border: 0;
     background-color: transparent;
-    border-right: .1rem solid #666;
+    border-right: .1rem solid rgb(209, 209, 209);
     cursor: pointer;
 }
 
@@ -68,10 +125,33 @@
     outline: none;
     border: 0;
     background-color: transparent;
-    border-right: .1rem solid #666;
+    border-right: .1rem solid rgb(209, 209, 209);
     cursor: pointer;
 }
 
 .project__tasks--add > select > option {
     font-size: 1.2rem;
+}
+
+.add-btn {
+    width: 5%;
+    outline: none;
+    border: .2rem solid rgb(192, 64, 124);
+    color: rgb(192, 64, 124);
+    border-radius: .5rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+.no-collab--text {
+    font-size: 1.4rem;
+}
+
+
+/* MENU DROPDOWNS STYLE */
+.project__tasks--add > select > option {
+    font-size: 1.4rem;
+    padding: 0.5rem 1rem;
 }

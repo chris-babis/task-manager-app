@@ -5,6 +5,6 @@ export interface Project {
     _id?: string,
     title: string,
     ownerId: User,
-    tasks?: [Task],
+    tasks?: Task[],
     collaborators?: [User]
 }

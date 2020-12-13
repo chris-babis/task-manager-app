@@ -57,9 +57,8 @@ export class UserService {
     if(!userData) return;
     
     const loggedInUser = new User(userData._id,userData.token, userData.username);
-    if(loggedInUser.token) {
-      this.user.next(loggedInUser);
-    }
+    if(loggedInUser.token) this.user.next(loggedInUser);
+    
   }
 
   getErrorMessage() {

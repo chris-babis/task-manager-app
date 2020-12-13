@@ -1,6 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const Project = require('../models/Project');
+const { Task } = require('../models/Task');
 const User = require('../models/User');
 const auth = require('../auth/auth');
 
@@ -25,6 +26,29 @@ router.get("/project/:id", auth, async(req,res) => {
         res.status(200).send(project);
     } catch (err) {
         console.log(err); 
+    }
+});
+
+// Add Task to Project
+router.post("/project/:projectId/", auth, async(req,res) => {
+    try {
+        const project = await Project.findById(req.params.projectId);
+        if(req.body.priority !== 'Low' && req.body.priority !== 'Moderate' && req.body.priority !== 'High') req.body.priority = 'None';
+        project.tasks.push(req.body);
+        await project.save(); 
+        res.status(201).send(project);
+    } catch (err) {
+        console.log(err);
+    } 
+});
+
+// Get All Tasks From A Single Project
+router.get("/project/:projectId/tasks", auth, async(req,res) => {
+    try {
+        const project = await Project.findById(req.params.projectId);
+        res.status(200).send(project.tasks);
+    } catch (err) {
+        console.log(err);
     }
 });
  

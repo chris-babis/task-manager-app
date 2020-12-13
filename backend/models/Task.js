@@ -11,9 +11,15 @@ const taskSchema = mongoose.Schema({
         ref: 'User',
         required: true
     },
+    assignee: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    
     priority: {
         type: String,
-        enum: ['Low', 'Moderate', 'High']
+        enum: ['None','Low', 'Moderate', 'High'],
+        allowNull: true,
     },
     status: {
         type: String,
@@ -22,7 +28,6 @@ const taskSchema = mongoose.Schema({
 },
     { timestamps: true }
 );
-
 
 const Task = mongoose.model("Task", taskSchema);
 

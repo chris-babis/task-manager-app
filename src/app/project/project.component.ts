@@ -1,28 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Project } from '../shared/project.model';
 import { ProjectService } from '../shared/project.service';
+import { Task } from '../shared/task.model';
+import { TaskService } from '../shared/task.service';
 import { User } from '../user/user.model';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnDestroy {
 
   project: Project;
-  allUsers: User[] = [];
+  projectSub: Subscription;
+  tasksSub:Subscription;
+  nameInput:string = '';
+  selectedAssignee:string = '';
+  selectedPriority:string = '';
 
-
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route:ActivatedRoute, private userService:UserService, private taskService:TaskService) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe((projectData:Data) => {
+    this.projectSub = this.route.data.subscribe((projectData:Data) => {
       this.project = projectData[0];      
-      this.allUsers.push(this.project.ownerId);
-      if(this.project.collaborators.length > 1) this.allUsers = this.allUsers.concat(this.project.collaborators);
+      this.taskService.getAllTasks(this.project._id);
+      this.tasksSub = this.taskService.getAllTasksObs().subscribe((tasks:Task[]) => {
+        this.project.tasks = tasks;
+      });
     });
+   
+  }
+
+  ngOnDestroy(): void {
+    this.projectSub.unsubscribe();
+    this.tasksSub.unsubscribe();
+  }
+
+  addTask() {
+    
+    let newTask:Task = {
+      title: this.nameInput,
+      ownerId: this.project.ownerId, 
+      priority: this.selectedPriority,
+      status: 'Uncompleted'
+    }
+
+    if(this.selectedAssignee) newTask.assignee = this.selectedAssignee;
+    this.taskService.addTask(this.project._id,newTask);
+
+    this.nameInput = '';
+    this.selectedAssignee = '';
+    this.selectedPriority = '';
+    
   }
 
 }
