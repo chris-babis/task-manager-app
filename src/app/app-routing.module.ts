@@ -17,9 +17,10 @@ const routes: Routes = [
   {path: 'user', component: NavigationComponent, canActivate:[AuthGuardService] ,children: [
     {path: '', component: HomeComponent},
     {path: 'create', component: CreateComponent},
-    {path: 'project/:id', component: ProjectComponent,canActivate: [OwnerProject], resolve:[ProjectResolver]}
+    {path: 'project/:id', component: ProjectComponent, canActivate: [OwnerProject], resolve:[ProjectResolver]}
   ]}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
