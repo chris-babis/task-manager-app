@@ -8,8 +8,8 @@
        </div>
        <div class="project__tasks--list">
            <div class="project__tasks--task" *ngFor="let task of project.tasks">
-               <button><i class="material-icons">delete</i></button>
-               <p class="task-name">{{task?.title}}</p>
+                <button class="expand-btn" (click)="expandTask(task._id)" #expandbtn><i class="material-icons">open_in_full</i></button>
+               <p class="task-name">{{task.title}}</p>
                <p class="task-assignee">{{task.assignee}}</p>
                <p class="task-priority">{{task.priority}}</p>
            </div>
@@ -31,3 +31,15 @@
     <p class="no-collab--text" *ngIf="project.collaborators.length < 1">Collaborators: You have no collaborators for this project</p>
 </div> 
 
+<div [ngStyle]="{
+    'transition':'all .8s',
+    'position': 'fixed',
+    'width': '40rem',
+    'height': '100%',
+    'background-color': '#666',
+    'right': this.isExpanded ? '0' : '-40rem',
+    'top':'0'
+  }"
+>
+
+</div>

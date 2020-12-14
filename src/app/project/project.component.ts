@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Project } from '../shared/project.model';
@@ -22,6 +22,10 @@ export class ProjectComponent implements OnInit, OnDestroy {
   selectedAssignee:string = '';
   selectedPriority:string = '';
 
+  isExpanded:boolean = false;
+
+  @ViewChild('expandbtn', {static: false}) expandBtn: ElementRef;
+
   constructor(private route:ActivatedRoute, private userService:UserService, private taskService:TaskService) { }
 
   ngOnInit(): void {
@@ -31,8 +35,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
       this.tasksSub = this.taskService.getAllTasksObs().subscribe((tasks:Task[]) => {
         this.project.tasks = tasks;
       });
-    });
-   
+    });   
+    this.isExpanded = false;
   }
 
   ngOnDestroy(): void {
@@ -58,4 +62,13 @@ export class ProjectComponent implements OnInit, OnDestroy {
     
   }
 
+  expandTask(taskId) {
+    this.isExpanded = !this.isExpanded;
+  }
+
+
+  // taskTemplateStyle() {
+  //   let styles = ;
+  //   return styles;
+  // }
 }

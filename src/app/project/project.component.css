@@ -51,23 +51,16 @@
 }
 
 .project__tasks--task > button {
-    position: absolute;
-    margin-left: -2.5rem;
     border:0;
     outline: 0;
     cursor: pointer;
-    color: red;
+    color: gray;
     transform: scale(.8);
-
-    transition: opacity .5s;
-    opacity: 0;
-    visibility: hidden;
+    position: absolute;
+    left: -3rem;
 }
 
-.project__tasks--task:hover button {
-    opacity: 1;
-    visibility: visible;
-}
+
 
 .task-name {flex: 0 0 75%;}
 .task-assignee{flex: 0 0 15%;}
@@ -155,3 +148,9 @@
     font-size: 1.4rem;
     padding: 0.5rem 1rem;
 }
+
+
+
+
+
+/* TASK TEMPLATE MOVE TO ITS OWN COMPONENT LATER */
