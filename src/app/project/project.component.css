@@ -6,12 +6,41 @@
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
+    flex: 1;
+    height: 90%;
 }
 
 .project {
     max-width: 160rem;
     margin:0 auto;
+    height: 100%;
 }
+
+.project__header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project__header > .delete-btn {
+    font-size: 1.6rem;
+    border: 0;
+    border-bottom: .2rem solid red;
+    background-image: linear-gradient(to bottom, #fff 50%, red 50%);
+    outline: none;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    transition: all .3s;
+    background-size: 100% 200%;
+}
+
+.project__header > .delete-btn:hover {
+    background-position: 0 100%;
+    color: #fff;
+
+}
+
 
 .project__tasks--header {
     display: flex;

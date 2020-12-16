@@ -41,6 +41,12 @@ userSchema.virtual('projects', {
     foreignField: 'ownerId'
 });
 
+userSchema.virtual('assignee', {
+    ref: 'Task',
+    localField: '_id',
+    foreignField: 'assignee'
+})
+
 // Hide values (password..)
 userSchema.methods.toJSON = function() {
     let user = this.toObject();

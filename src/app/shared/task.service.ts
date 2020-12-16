@@ -36,5 +36,9 @@ export class TaskService {
   getAllTasksObs(){
     return this.tasksSub.asObservable();
   }
+
+  getTask(taskId:string) {
+    
+  }
   
 }

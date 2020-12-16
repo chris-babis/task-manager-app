@@ -34,7 +34,10 @@ router.post("/project/:projectId/", auth, async(req,res) => {
     try {
         const project = await Project.findById(req.params.projectId);
         if(req.body.priority !== 'Low' && req.body.priority !== 'Moderate' && req.body.priority !== 'High') req.body.priority = 'None';
-        project.tasks.push(req.body);
+        let nTask = new Task(req.body);
+        nTask.projectId = req.params.projectId;
+        await nTask.save();
+        project.tasks.push(nTask);
         await project.save(); 
         res.status(201).send(project);
     } catch (err) {
@@ -42,14 +45,7 @@ router.post("/project/:projectId/", auth, async(req,res) => {
     } 
 });
 
-// Get All Tasks From A Single Project
-router.get("/project/:projectId/tasks", auth, async(req,res) => {
-    try {
-        const project = await Project.findById(req.params.projectId);
-        res.status(200).send(project.tasks);
-    } catch (err) {
-        console.log(err);
-    }
-});
- 
+
+
+
 module.exports = router;  

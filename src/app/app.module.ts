@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthInterceptor } from './user/auth.interceptor';
 import { CreateComponent } from './create/create.component';
 import { ProjectComponent } from './project/project.component';
+import { TaskComponent } from './task/task.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProjectComponent } from './project/project.component';
     RegisterComponent,
     HomeComponent,
     CreateComponent,
-    ProjectComponent
+    ProjectComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,

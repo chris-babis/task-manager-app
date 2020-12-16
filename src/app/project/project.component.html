@@ -1,5 +1,9 @@
 <div class="project">
-    <p class="project__title">{{project.title}}</p>
+    <div class="project__header">
+        <p class="project__title">{{project.title}}</p>
+        <button class="delete-btn">Delete Project</button>
+    </div>
+    
     <div class="project__tasks">
        <div class="project__tasks--header">
             <p class="header-name">Task name</p>
@@ -10,7 +14,8 @@
            <div class="project__tasks--task" *ngFor="let task of project.tasks">
                 <button class="expand-btn" (click)="expandTask(task._id)" #expandbtn><i class="material-icons">open_in_full</i></button>
                <p class="task-name">{{task.title}}</p>
-               <p class="task-assignee">{{task.assignee}}</p>
+               <p class="task-assignee" *ngIf="task.assignee">{{task.assignee.username}}</p>
+               <p class="task-assignee" *ngIf="!task.assignee">None</p>
                <p class="task-priority">{{task.priority}}</p>
            </div>
        </div>
@@ -31,15 +36,17 @@
     <p class="no-collab--text" *ngIf="project.collaborators.length < 1">Collaborators: You have no collaborators for this project</p>
 </div> 
 
-<div [ngStyle]="{
+<app-task [ngStyle]="{
     'transition':'all .8s',
     'position': 'fixed',
     'width': '40rem',
     'height': '100%',
-    'background-color': '#666',
+    'background-color': '#ddd',
     'right': this.isExpanded ? '0' : '-40rem',
-    'top':'0'
+    'top':'0',
+    'border-radius':'2rem 0rem 0rem 2rem'
   }"
->
+  [taskId]="selectedTaskId"
+  >
 
-</div>
+</app-task>

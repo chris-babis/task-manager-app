@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const User = require('./routers/User');
 const Project = require('./routers/Project');
+const Task = require('./routers/Task');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,5 +25,6 @@ app.use((req,res,next) => {
 
 app.use(User);
 app.use(Project);
+app.use(Task);
 
 app.listen(PORT, console.log(`Server up running...\nPORT: ${PORT}`));

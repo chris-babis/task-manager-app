@@ -27,7 +27,6 @@ export class ProjectService implements OnInit{
   getUsersProjects() {      
     return this.http.get("http://localhost:3000/projects").subscribe((projects:Project[]) => {
       this.projects = projects;
-      this.userService.user.value.projects = projects;
       this.projectsSub.next([...this.projects]);
     })
   }
@@ -44,7 +43,6 @@ export class ProjectService implements OnInit{
 
     this.http.post(`http://localhost:3000/projects`, {project}).subscribe((resProject:Project) => {
       this.projects.push(resProject);
-      this.userService.user.value.projects.push(resProject);
       this.projectsSub.next([...this.projects]);
       this.router.navigate(['/user/project', resProject._id]);
     });
