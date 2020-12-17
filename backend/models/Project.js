@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { taskSchema } = require('./Task');
+const { taskSchema, Task } = require('./Task');
 
 const projectSchema = mongoose.Schema({
     title: {
@@ -30,6 +30,10 @@ const projectSchema = mongoose.Schema({
 },
 { timestamps: true });
 
+//Remove tasks when user deletes project
+projectSchema.post('findOneAndDelete', async function(doc) {
+    await Task.deleteMany({projectId: doc._id});
+});
 
 const Project = mongoose.model("Project", projectSchema);
 

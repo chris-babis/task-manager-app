@@ -42,7 +42,17 @@ router.post("/project/:projectId/", auth, async(req,res) => {
         res.status(201).send(project);
     } catch (err) {
         console.log(err);
-    } 
+    }
+});
+
+// Delete Project
+router.delete("/project/:projectId/delete", auth, async(req,res) => {
+    try {
+        await Project.findOneAndDelete({_id:req.params.projectId});
+        res.send();
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 

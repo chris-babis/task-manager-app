@@ -1,7 +1,7 @@
 <div class="project">
     <div class="project__header">
         <p class="project__title">{{project.title}}</p>
-        <button class="delete-btn">Delete Project</button>
+        <button class="delete-btn" (click)="deleteProject()">Delete Project</button>
     </div>
     
     <div class="project__tasks">
@@ -12,8 +12,7 @@
        </div>
        <div class="project__tasks--list">
            <div class="project__tasks--task" *ngFor="let task of project.tasks">
-                <button class="expand-btn" (click)="expandTask(task._id)" #expandbtn><i class="material-icons">open_in_full</i></button>
-               <p class="task-name">{{task.title}}</p>
+               <p class="task-name" (click)="expandTask(task._id)">{{task.title}}</p>
                <p class="task-assignee" *ngIf="task.assignee">{{task.assignee.username}}</p>
                <p class="task-assignee" *ngIf="!task.assignee">None</p>
                <p class="task-priority">{{task.priority}}</p>
@@ -48,5 +47,13 @@
   }"
   [taskId]="selectedTaskId"
   >
-
 </app-task>
+
+
+<div class="confirmation__modal" id="modal">
+    <div class="content">
+        <p>Are you sure you want to delete the project?</p>
+        <button class="conf-del" (click)="confirmDelete()">Delete</button>
+        <button class="conf-can" (click)="cancel()">Cancel</button>
+    </div>
+</div>

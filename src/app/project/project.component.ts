@@ -24,12 +24,13 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   isExpanded:boolean = false;
   selectedTaskId:string;
+  elem: HTMLElement;
 
   @ViewChild('expandbtn', {static: false}) expandBtn: ElementRef;
 
 
 
-  constructor(private route:ActivatedRoute, private userService:UserService, private taskService:TaskService) { }
+  constructor(private route:ActivatedRoute, private projectService:ProjectService, private taskService:TaskService) { }
 
   ngOnInit(): void {
     this.projectSub = this.route.data.subscribe((projectData:Data) => {
@@ -42,6 +43,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
       });
     });   
     this.isExpanded = false;
+    this.elem = document.getElementById('modal');
   }
 
   ngOnDestroy(): void {
@@ -72,9 +74,24 @@ export class ProjectComponent implements OnInit, OnDestroy {
     this.selectedTaskId = taskId;
   }
 
+  deleteProject() {
+    
+    this.elem.setAttribute("style","display: block;");
+  }
+
+  confirmDelete() {
+    this.elem.setAttribute("style","display: none;");
+    this.projectService.deleteProject(this.project._id);
+  }
+
+  cancel() {
+    this.elem.setAttribute("style","display: none;")
+  }
+
 
   // taskTemplateStyle() {
   //   let styles = ;
   //   return styles;
   // }
 }
+ 

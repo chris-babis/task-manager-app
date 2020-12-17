@@ -52,5 +52,12 @@ export class ProjectService implements OnInit{
     return this.http.get<Project>(`http://localhost:3000/project/${_id}`)
   }
 
+  deleteProject(_id:string) {
+    this.http.delete(`http://localhost:3000/project/${_id}/delete`).subscribe(res => {
+      this.projects = this.projects.filter(project => project._id !== _id);
+      this.projectsSub.next([...this.projects]);
+      this.router.navigate(['/user/']);
+    })
+  }
   
 }
