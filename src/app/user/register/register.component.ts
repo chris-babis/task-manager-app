@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit, OnDestroy{
   constructor(private userService:UserService, private router:Router) { }
 
   ngOnInit(): void {
-    if(this.userService.user) this.router.navigate(['/user']);
+    if(this.userService.user.value) this.router.navigate(['/user']);
     this.errSub = this.userService.getErrorMessage().subscribe(err => this.err = err);
   }
 
