@@ -91,7 +91,13 @@
 
 
 
-.task-name {flex: 0 0 75%; cursor: pointer;}
+.task-name {
+    flex: 0 0 75%; 
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .task-assignee{flex: 0 0 15%;}
 .task-priority{flex: 0 0 10%;}
 

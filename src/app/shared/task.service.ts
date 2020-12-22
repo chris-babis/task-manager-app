@@ -38,7 +38,7 @@ export class TaskService {
   }
 
   getTask(taskId:string) {
-    
+    return this.http.get(`http://localhost:3000/task/${taskId}`);
   }
   
 }
