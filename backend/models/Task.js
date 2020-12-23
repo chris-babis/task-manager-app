@@ -27,7 +27,11 @@ const taskSchema = mongoose.Schema({
     status: {
         type: String,
         enum: ['Completed', 'Uncompleted']
-    }
+    },
+    comments: [{
+        type: String,
+        default: []
+    }]
 },
     { timestamps: true }
 );

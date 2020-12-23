@@ -28,3 +28,53 @@
     margin-top: 2rem;
     font-size: 2rem;
 }
+
+.assignee__wrapper {
+    margin-top: 2rem;
+}
+
+.assignee__wrapper > p {
+    font-size: 1.6rem;
+}
+
+.comments__wrapper {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.comments__header {
+    font-size: 1.6rem;
+    color: #666;
+}
+
+.comments__wrapper > hr {
+    margin-top: .5rem;
+    color: #666;
+}
+
+.comments__input {
+    font-size: 1.4rem;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem;
+    background: transparent;
+    outline: none;
+    border: .1rem solid #666;
+    color: #666;
+}
+
+.svcmtbtn {
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
+
+.task__comments {
+    width: 100%;
+}
+
+.task__comments > p {
+    font-size: 1.4rem;
+    margin: .5rem 0rem;
+}

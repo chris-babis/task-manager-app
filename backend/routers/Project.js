@@ -32,10 +32,17 @@ router.get("/project/:id", auth, async(req,res) => {
 // Add Task to Project
 router.post("/project/:projectId/", auth, async(req,res) => {
     try {
+        let assignedUser;
         const project = await Project.findById(req.params.projectId);
         if(req.body.priority !== 'Low' && req.body.priority !== 'Moderate' && req.body.priority !== 'High') req.body.priority = 'None';
         let nTask = new Task(req.body);
         nTask.projectId = req.params.projectId;
+
+        if(req.body.assignee) {
+            assignedUser = await User.findById(req.body.assignee);
+            nTask.assignee = assignedUser;
+        }
+
         await nTask.save();
         project.tasks.push(nTask);
         await project.save(); 

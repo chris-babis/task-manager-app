@@ -3,5 +3,17 @@
         Mark Complete
     </button>
     <p class="task__title">{{task?.title}}</p>
-    
-</div>
+    <div class="assignee__wrapper">
+        <p *ngIf="!task?.assignee">Assignee: Unassigned</p>
+        <p *ngIf="task?.assignee">Assignee: {{task?.assignee.username}}</p>
+    </div>
+    <div class="comments__wrapper">
+        <p class="comments__header">Comments</p>
+        <hr>
+        <div *ngIf="task?.comments" class="task__comments">
+            <p *ngFor="let comment of task?.comments; let i = index;">#{{i+1}}. {{comment}}</p>
+        </div>
+        <input class="comments__input" [(ngModel)]="commentInput" type="text" placeholder="New comment...">
+        <button class="svcmtbtn" (click)="saveComment()" *ngIf="commentInput.length !== 0">Save</button>
+    </div>
+</div> 

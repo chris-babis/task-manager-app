@@ -27,7 +27,7 @@ export class ProjectService implements OnInit{
   getUsersProjects() {      
     return this.http.get("http://localhost:3000/projects").subscribe((projects:Project[]) => {
       this.projects = projects;
-      this.projectsSub.next([...this.projects]);
+      this.projectsSub.next([...this.projects]);     
     })
   }
 

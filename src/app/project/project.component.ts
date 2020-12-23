@@ -19,7 +19,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
   projectSub: Subscription;
   tasksSub:Subscription;
   nameInput:string = '';
-  selectedAssignee:string = '';
+  selectedAssignee:User = null;
   selectedPriority:string = '';
 
   isExpanded:boolean = false;
@@ -37,9 +37,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
       this.project = projectData[0];      
       this.taskService.getAllTasks(this.project._id);
       this.tasksSub = this.taskService.getAllTasksObs().subscribe((tasks:Task[]) => {
-        this.project.tasks = tasks;    
-        console.log(this.project.tasks);
-           
+        this.project.tasks = tasks;
       });
     });   
     this.isExpanded = false;
@@ -64,14 +62,21 @@ export class ProjectComponent implements OnInit, OnDestroy {
     this.taskService.addTask(this.project._id,newTask);
 
     this.nameInput = '';
-    this.selectedAssignee = '';
+    this.selectedAssignee = null;
     this.selectedPriority = '';
     
   }
 
   expandTask(taskId) {
-    this.isExpanded = !this.isExpanded;
-    this.selectedTaskId = taskId;
+    if(this.isExpanded) {
+      if(taskId === this.selectedTaskId) this.isExpanded = !this.isExpanded;
+      else {
+        this.selectedTaskId = taskId;
+      }
+    } else {
+      this.selectedTaskId = taskId;
+      this.isExpanded = !this.isExpanded;
+    }
   }
 
   deleteProject() {
@@ -88,10 +93,5 @@ export class ProjectComponent implements OnInit, OnDestroy {
     this.elem.setAttribute("style","display: none;")
   }
 
-
-  // taskTemplateStyle() {
-  //   let styles = ;
-  //   return styles;
-  // }
 }
  

@@ -3,6 +3,7 @@ const express = require('express');
 const User = require('./routers/User');
 const Project = require('./routers/Project');
 const Task = require('./routers/Task');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,8 +14,8 @@ mongoose.connect('mongodb://localhost:27017/task-manager-db',{
     useUnifiedTopology: true
 });
 
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use((req,res,next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
